@@ -1,23 +1,304 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+    /* 기본 스타일 재정의: 부드럽고 가독성 높은 디자인으로 변경 */
+    body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; margin: 0; padding: 0; background: #f4f7f9; color: #333; }
+    header { background: #ffffff; padding: 40px 15px; text-align: center; border-bottom: 5px solid #0056b3; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    section { max-width: 900px; margin: 20px auto; padding: 30px; background: #ffffff; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.08); }
+    h1 { color: #004aad; font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
+    h2 { color: #0056b3; border-bottom: 2px solid #e0eaf4; padding-bottom: 10px; margin-top: 30px; font-size: 2rem; }
+    h3 { color: #2a6496; margin-top: 25px; font-size: 1.5rem; }
+    ul, ol { padding-left: 20px; margin-bottom: 20px; }
+    ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 25px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; transition: background-color 0.2s ease; }
+    th { background: #e0eaf4; color: #004aad; font-weight: 700; text-align: center; border-bottom: 2px solid #004aad; }
+    tbody tr:nth-child(even) { background-color: #f8f9fa; }
+    tbody tr:hover { background-color: #eef1f4; }
+    a { color: #007bff; text-decoration: none; transition: color 0.2s ease; }
+    a:hover { text-decoration: underline; color: #0056b3; }
+    
+    /* CTA 버튼 스타일 */
+    .btn-cta {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #007bff; /* 메인 CTA 색상 */
+      color: #fff;
+      font-weight: 700;
+      border-radius: 40px;
+      box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+      transition: all 0.3s ease;
+      text-align: center;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      font-size: 1.1rem;
+    }
+    .btn-cta:hover {
+      background: #0056b3;
+      box-shadow: 0 8px 16px rgba(0, 86, 179, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* 네비게이션 스타일 */
+    nav { max-width: 900px; margin: 20px auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    nav ul { list-style: none; padding: 15px 0; display: flex; flex-wrap: wrap; justify-content: space-around; }
+    nav li { margin: 5px 10px; }
+    nav a { padding: 8px 15px; display: block; border-radius: 20px; background: #f0f6ff; color: #004aad; font-weight: 600; font-size: 0.95rem; }
+    nav a:hover { background: #e0eaf4; text-decoration: none; }
+
+    /* 폼 스타일 개선 */
+    form { background: #f9f9f9; padding: 30px; border-radius: 10px; border: 1px solid #e0eaf4; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; color: #444; font-size: 0.95rem; }
+    input[type="text"], input[type="tel"], select, textarea {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+    }
+    textarea { resize: vertical; }
+
+    /* 기타 섹션 스타일 */
+    .info-box { background: #fef3f3; padding: 20px; border-left: 5px solid #d9534f; border-radius: 8px; margin-top: 20px; }
+    .highlight { font-weight: 700; color: #d9534f; }
+    .strong-point { font-weight: 700; color: #004aad; }
+    .small-print { font-size: 0.85rem; color: #777; margin-top: 10px; }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.8rem; }
+      nav ul { flex-direction: column; align-items: stretch; }
+      nav li { margin: 5px 0; }
+      nav a { text-align: center; }
+      section { margin: 10px; padding: 20px; border-radius: 0; }
+      th, td { padding: 12px; font-size: 0.9rem; }
+    }
+  </style>
+
+  <!-- Schema.org Product 마크업(JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "크라운치아보험 가이드 및 가격 비교",
+    "description": "2026년 최신 기준으로 크라운치아보험의 장점과 단점, 가입 순위, 면책 기간, 예상 비용을 비교 분석합니다. 저렴한 곳을 찾는 팁과 내돈내산 후기 기반의 정보를 제공하여 합리적인 선택을 돕습니다.",
+    "brand": {
+      "@type": "Organization",
+      "name": "치아보험 전문가이드"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceRange": "₩10,000 ~ ₩50,000",
+      "priceCurrency": "KRW",
+      "url": "https://도메인/크라운치아보험"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>크라운치아보험 완벽 가이드: 2026년 핵심 정리</h1>
+    <p>치과 치료, 더 이상 비용 걱정은 그만! 크라운치료 보장 혜택과 내게 맞는 상품을 찾아보세요.</p>
+    <button class="btn-cta" onclick="location.href='#contact'">나만을 위한 크라운치아보험 견적 비교하기</button>
+  </header>
+
+  <nav aria-label="페이지 내 이동">
+    <ul>
+      <li><a href="#definition">크라운치아보험이란?</a></li>
+      <li><a href="#necessity">필수 가입 이유</a></li>
+      <li><a href="#comparison">가입 순위 및 비교</a></li>
+      <li><a href="#cost">예상 비용 및 가격</a></li>
+      <li><a href="#checklist">필수 체크리스트</a></li>
+      <li><a href="#contact">전문가 견적 요청</a></li>
+    </ul>
+  </nav>
+
+  <section id="definition">
+    <span id="definition-anchor" class="anchor"></span>
+    <h2>크라운치아보험이란? 개념부터 이해하기</h2>
+    <p>크라운치아보험은 치과 치료 중 <strong class="strong-point">보존치료와 보철치료</strong>를 보장하는 상품입니다. 특히 치아를 씌우는 <strong class="strong-point">크라운 치료</strong>는 국민건강보험이 적용되지 않는 비급여 항목으로, 치료비 부담이 매우 크기 때문에 보험 가입이 필수적입니다. 치아보험은 크게 보존치료(충전치료: 레진, 인레이/온레이)와 보철치료(임플란트, 크라운, 브릿지)를 보장하며, 이 중 크라운치료는 충치가 심하거나 신경치료를 받은 후 치아를 보호하기 위해 씌우는 치료입니다. <strong class="strong-point">크라운치아보험</strong>의 핵심은 이 고액의 치료비용을 대비하는 것입니다.</p>
+
+    <p>2026년 현재, 치과 치료 기술의 발전과 더불어 기대 수명이 증가하면서 치아 건강에 대한 관심이 높아지고 있습니다. 이에 따라 치아보험 시장도 세분화되고 있으며, 크라운 치료뿐만 아니라 임플란트, 브릿지 등 고가 보철 치료의 보장 범위를 강화한 상품들이 주를 이루고 있습니다. 특히, 2026년에는 AI 기반의 맞춤형 상품 추천이 활발해질 것으로 전망되며, 단순히 <strong class="strong-point">저렴한곳</strong>만 찾는 것이 아니라 개인의 치아 상태에 맞는 <strong class="strong-point">맞춤형 보장</strong>을 찾는 것이 중요해졌습니다.</p>
+    
+    <h3>크라운 치료의 종류와 평균 비용 (2026년 기준)</h3>
+    <p>크라운 치료는 재료에 따라 PFM, 골드, 지르코니아 등으로 나뉩니다. 재료마다 <strong class="strong-point">장단점</strong>이 명확하며, 이에 따라 <strong class="strong-point">예상 비용</strong>도 크게 달라집니다. 특히 지르코니아는 심미성과 내구성을 모두 갖춰 최근 가장 많이 추천되는 크라운 재료입니다. 건강보험심사평가원의 2024년 비급여 진료비용 통계에 따르면 크라운 치료의 <strong class="strong-point">평균 금액</strong>은 약 42만 원 수준이며, 병원마다 <strong class="strong-point">가격</strong> 차이가 클 수 있습니다. 치아보험을 통해 이 비용을 보장받을 수 있습니다.</p>
+    <div class="info-box">
+        <h4><span class="highlight">꼭 알아두세요: 크라운 치료와 충전 치료의 차이점</span></h4>
+        <p>크라운 치료는 치아의 겉면 전체를 덮는 치료로, 주로 신경치료 후나 충치가 심해 치아 손상이 클 때 사용됩니다. 반면, 충전 치료(인레이, 온레이, 레진)는 손상된 부분만을 채우는 치료입니다. 치아보험에서는 이 두 가지 치료 모두 보장하지만, 크라운 치료가 보장 금액이 훨씬 높으므로 <strong class="strong-point">크라운치아보험</strong> 가입 시 보장 한도를 잘 확인해야 합니다.</p>
+    </div>
+  </section>
+
+  <section id="necessity">
+    <span id="necessity-anchor" class="anchor"></span>
+    <h2>크라운치아보험 가입이 필요한 이유: 장점과 단점 분석</h2>
+    <p>치아보험 가입의 <strong class="strong-point">장점</strong>은 명확합니다. 치과 치료는 건강보험 급여 항목이 제한적이라 본인 부담률이 높고, 예상치 못한 고액의 치료비로 인해 치료를 미루는 경우가 많습니다. <strong class="strong-point">크라운치아보험</strong>은 이러한 재정적 부담을 덜어주어 적시에 치료를 받을 수 있게 합니다. 특히 크라운, 임플란트 등 고가 치료는 1개당 수십만 원에서 100만 원 이상이 소요되므로, 가족 구성원이 많거나 치아 상태가 좋지 않은 경우 <strong class="strong-point">가입</strong>은 현명한 선택입니다.</p>
+
+    <p>하지만 <strong class="strong-point">단점</strong>도 있습니다. <strong class="strong-point">면책기간과 감액기간</strong>이 존재한다는 점입니다. 보험 가입 후 일정 기간(보통 90일~180일) 동안은 보장이 되지 않는 면책기간이 있으며, 그 이후 1년 또는 2년 동안은 보장 금액의 50%만 지급하는 감액기간이 있습니다. 따라서 아픈 치아를 치료하기 위해 급하게 가입하는 것은 불가능합니다. 또한, 기존에 치료받은 치아는 보장이 되지 않거나 보험료가 인상될 수 있으므로, 치아가 건강할 때 미리 준비하는 것이 <strong class="strong-point">가입</strong>의 핵심입니다.</p>
+
+    <h3>갱신형 vs 비갱신형: 나에게 맞는 보험 선택하기</h3>
+    <p>치아보험은 <strong class="strong-point">갱신형</strong>과 <strong class="strong-point">비갱신형</strong>으로 나뉩니다. 두 유형의 <strong class="strong-point">차이점</strong>을 정확히 이해하고 선택해야 후회 없는 <strong class="strong-point">내돈내산</strong> 결과를 얻을 수 있습니다.</p>
+    <ul>
+      <li><strong>갱신형 치아보험:</strong> 초기 보험료가 <strong class="strong-point">저렴한곳</strong>이 많지만, 갱신 주기(3년, 5년 등)마다 보험료가 인상될 수 있습니다. 젊은 연령층이나 짧은 기간 동안 집중 보장을 원하는 경우 유리할 수 있습니다.</li>
+      <li><strong>비갱신형 치아보험:</strong> 초기 보험료가 갱신형보다 비싸지만, 만기까지 보험료가 오르지 않습니다. 장기적으로 보장을 유지하며 총 납입 <strong class="strong-point">금액</strong>을 안정적으로 관리하고 싶은 분들에게 <strong class="strong-point">추천</strong>됩니다.</li>
+    </ul>
+    <p>2026년에는 보험사들이 갱신 주기를 다양화하여 소비자 선택의 폭을 넓히고 있습니다. 자신의 연령과 치아 상태, 경제 상황을 고려하여 <strong class="strong-point">장단점</strong>을 비교한 후 선택하는 것이 중요합니다.</p>
+  </section>
+
+  <section id="comparison">
+    <span id="comparison-anchor" class="anchor"></span>
+    <h2>크라운치아보험 가입 순위 및 주요 상품 비교</h2>
+    <p>크라운치아보험은 보험사별로 보장 범위와 <strong class="strong-point">가격</strong>, 면책기간 등에 <strong class="strong-point">차이점</strong>이 있습니다. 2026년 소비자 선호도 및 보장 내용을 기반으로 <strong class="strong-point">가입 순위</strong>를 비교하고, <strong class="strong-point">저렴한곳</strong>을 찾는 기준을 제시합니다.</p>
+
+    <h3>추천 치아보험 상품 비교 (2026년 기준)</h3>
+    <p>다음은 보장 내용, 보험료, 고객 <strong class="strong-point">후기</strong> 등을 종합적으로 고려한 주요 보험사들의 크라운치아보험 상품 <strong class="strong-point">비교</strong>입니다. (상품명은 예시이며, 실제 상품 정보는 변동될 수 있습니다.)</p>
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>A사 치아보험 (DB손해보험 등)</th>
+          <th>B사 치아보험 (메리츠화재 등)</th>
+          <th>C사 치아보험 (현대해상 등)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>주요 특징</td>
+          <td>고액 보장 중심, 임플란트 및 크라운 한도 높음</td>
+          <td>가성비 및 면책 기간 단축에 강점</td>
+          <td>만기 환급금형 선택 가능, 보존치료 보장 강화</td>
+        </tr>
+        <tr>
+          <td>크라운 보장 금액 (연간 한도)</td>
+          <td>최대 50만원 (연 3개)</td>
+          <td>최대 40만원 (연 3개)</td>
+          <td>최대 45만원 (연 3개)</td>
+        </tr>
+        <tr>
+          <td>보존치료 보장 (레진/인레이)</td>
+          <td>인레이/온레이 최대 10만원</td>
+          <td>레진 최대 7만원, 인레이 최대 12만원</td>
+          <td>레진/인레이 구분 없이 최대 10만원</td>
+        </tr>
+        <tr>
+          <td>면책 기간 (질병 기준)</td>
+          <td>90일</td>
+          <td>90일</td>
+          <td>90일</td>
+        </tr>
+        <tr>
+          <td>감액 기간 (질병 기준)</td>
+          <td>1년 미만 50% 감액</td>
+          <td>1년 미만 50% 감액</td>
+          <td>1년 미만 50% 감액</td>
+        </tr>
+        <tr>
+          <td>예상 보험료 (40세 기준)</td>
+          <td>30,000원대</td>
+          <td>20,000원대 후반</td>
+          <td>30,000원대 초반</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="small-print">* 상기 금액은 상품에 따라 달라질 수 있으며, 갱신 여부, 특약 추가 등에 따라 <strong class="strong-point">가격</strong> 변동이 있습니다. 정확한 <strong class="strong-point">견적</strong>은 반드시 전문가 상담을 통해 확인하세요.</p>
+
+    <h3><span class="highlight">함께 많이 찾는 키워드:</span> 치아보험료 얼마? 갱신형 단점, 내돈내산 후기</h3>
+    <p>네이버에서 <strong class="strong-point">크라운치아보험</strong>을 검색할 때 <strong class="strong-point">함께 많이 찾는</strong> 키워드는 주로 <strong class="strong-point">보험료 얼마</strong>, <strong class="strong-point">내돈내산 후기</strong>, <strong class="strong-point">갱신형 단점</strong> 등입니다. 이는 소비자들이 <strong class="strong-point">가격</strong>에 대한 민감도가 높고, 실제 경험담을 통해 상품의 <strong class="strong-point">장단점</strong>을 파악하려는 경향이 강함을 보여줍니다. 따라서 <strong class="strong-point">가입</strong> 전에 여러 상품의 <strong class="strong-point">견적</strong>을 <strong class="strong-point">비교</strong>하고 <strong class="strong-point">후기</strong>를 참고하여 가장 합리적인 선택을 내리는 것이 중요합니다.</p>
+  </section>
+
+  <section id="cost">
+    <span id="cost-anchor" class="anchor"></span>
+    <h2>크라운치아보험 예상 비용 및 가입 시 고려 사항</h2>
+    <p>치아보험 <strong class="strong-point">견적</strong>은 나이, 성별, 치아 상태, 보장 범위에 따라 천차만별입니다. 특히 <strong class="strong-point">평균</strong> 적으로 40세 이후부터 치과 치료 수요가 급증하므로, 갱신 시점에 보험료가 크게 오를 수 있습니다. <strong class="strong-point">저렴한곳</strong>을 찾기 위해 단순히 초기 보험료만 보고 선택했다가 나중에 <strong class="strong-point">단점</strong>을 경험하는 경우가 많습니다.</p>
+
+    <h3>보험료를 결정하는 주요 요인</h3>
+    <p>치아보험료를 결정하는 핵심 요인은 다음과 같습니다.</p>
+    <ul>
+      <li><strong>나이 및 성별:</strong> 나이가 많을수록 보험료가 높아집니다. 성별에 따라 보험료 차이가 있을 수 있습니다.</li>
+      <li><strong>보장 범위 및 한도:</strong> 임플란트, 크라운 보장 <strong class="strong-point">금액</strong> 한도가 높을수록 보험료가 상승합니다.</li>
+      <li><strong>갱신 여부 (갱신형 vs 비갱신형):</strong> 비갱신형이 초기 보험료는 높지만 장기적으로 유리할 수 있습니다.</li>
+      <li><strong>특약 추가:</strong> 치주질환(잇몸병) 보장, 스케일링, 틀니 등 특약을 추가하면 보험료가 올라갑니다.</li>
+    </ul>
+    <p class="small-print">치아보험 <strong class="strong-point">가격</strong>은 보통 월 2~5만원 선에서 형성되며, <strong class="strong-point">크라운치아보험</strong>의 핵심인 보철치료 보장을 강화할수록 <strong class="strong-point">비용</strong>은 증가합니다. <strong class="strong-point">저렴한곳</strong>을 찾는 것도 중요하지만, 보장 한도와 면책 기간을 면밀히 <strong class="strong-point">비교</strong>하여 나중에 후회하지 않도록 해야 합니다.</p>
+
+    <div class="info-box">
+        <h4><span class="highlight">2026년 치아보험 시장의 변화: 보장 축소 가능성</span></h4>
+        <p>2026년 보험 시장은 수익성 악화로 인해 보장 금액을 축소하거나 가입 심사를 강화하는 방향으로 변화하고 있습니다. 특히 크라운, 임플란트 등 고액 치료에 대한 보험금 지급률이 높아지면서 보험사들이 <strong class="strong-point">보험료</strong> 인상이나 보장 한도 축소 전략을 사용할 가능성이 높습니다. 따라서 치아보험 <strong class="strong-point">가입</strong>을 고려한다면, 보장 내용이 변경되기 전에 미리 <strong class="strong-point">가입</strong>하는 것이 현명합니다.</p>
+    </div>
+  </section>
+
+  <section id="checklist">
+    <span id="checklist-anchor" class="anchor"></span>
+    <h2>크라운치아보험 가입 전 필수 체크리스트 (내돈내산 팁)</h2>
+    <p>치아보험 <strong class="strong-point">가입</strong>을 결정했다면, 다음의 체크리스트를 통해 꼼꼼히 <strong class="strong-point">비교</strong>하고 <strong class="strong-point">추천</strong> 상품을 신중하게 선택하세요.</p>
+    <ol>
+      <li><strong>면책 기간 및 감액 기간 확인:</strong> <strong class="strong-point">크라운치아보험</strong>의 핵심은 면책 기간과 감액 기간입니다. 면책 기간이 짧은 상품을 선택하는 것이 유리하며, 감액 기간 동안에는 보장 금액이 절반만 지급되므로 이 기간을 고려하여 <strong class="strong-point">가입</strong>해야 합니다.</li>
+      <li><strong>고지 의무 준수:</strong> <strong class="strong-point">가입</strong> 시 현재 치아 상태에 대한 고지 의무를 정확히 이행해야 합니다. 치료받은 치아는 보장이 안 될 수 있습니다.</li>
+      <li><strong>갱신 주기의 적정성:</strong> 장기간 유지할 계획이라면 비갱신형을, 짧은 기간 동안 <strong class="strong-point">저렴한곳</strong>을 찾는다면 갱신형을 고려하세요.</li>
+      <li><strong>보장 금액 및 한도:</strong> 연간 보장 한도와 횟수를 확인하세요. <strong class="strong-point">크라운치아보험</strong>은 연간 3개 한도로 보장하는 경우가 많습니다.</li>
+      <li><strong>진단형 vs 무진단형:</strong> 진단형은 치과 검진을 통해 가입하는 대신 보장 범위가 넓고 면책 기간이 짧을 수 있습니다. 무진단형은 고지 의무만으로 가입이 가능해 간편하지만 보장 금액이 낮을 수 있습니다.</li>
+    </ol>
+  </section>
+
+  <section id="external-references">
+    <span id="external-references-anchor" class="anchor"></span>
+    <h2>크라운치아보험 관련 공신력 있는 외부 정보</h2>
+    <p>치아보험 <strong class="strong-point">가입</strong> 시에는 공인된 정보를 참고하는 것이 중요합니다. 다음은 <strong class="strong-point">크라운치아보험</strong> 및 치과 치료에 대한 신뢰성 있는 정보 출처입니다.</p>
+    <ul>
+      <li><a href="https://www.hira.or.kr/" target="_blank">건강보험심사평가원 (HIRA)</a>: 비급여 진료비 <strong class="strong-point">가격</strong> 정보 및 치과 치료 관련 통계를 확인할 수 있습니다.</li>
+      <li><a href="https://www.fss.or.kr/fss/main/index.jsp" target="_blank">금융감독원 (FSS)</a>: 보험 상품의 약관 및 소비자 유의 사항을 제공하며, 치아보험 관련 분쟁 사례를 확인할 수 있습니다.</li>
+      <li><a href="https://www.kidi.or.kr/main/index.do" target="_blank">보험연구원</a>: 보험 시장 동향 및 통계, 2026년 보험 산업 <strong class="strong-point">전망</strong> 자료 등을 참고할 수 있습니다.</li>
+      <li><a href="https://www.namu.wiki/w/%EC%B9%98%EC%95%84%EB%B3%B4%ED%97%98" target="_blank">나무위키 - 치아보험</a>: 치아보험의 역사, 보장 내용, <strong class="strong-point">장단점</strong> 등 일반 정보를 정리한 백과사전입니다.</li>
+      <li><a href="https://www.consumer.go.kr/main/index.do" target="_blank">한국소비자원</a>: 치아보험 관련 소비자 <strong class="strong-point">후기</strong> 및 피해 구제 사례를 확인할 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <span id="contact-anchor" class="anchor"></span>
+    <h2>크라운치아보험 실시간 견적 상담 문의</h2>
+    <p>나에게 맞는 <strong class="strong-point">크라운치아보험</strong>을 찾는 가장 정확한 방법은 전문가와 1:1 상담을 통해 <strong class="strong-point">견적</strong>을 받아보는 것입니다. 아래 양식을 작성해 주시면 <strong class="strong-point">저렴한곳</strong>부터 보장이 확실한 상품까지, 개인 맞춤형 <strong class="strong-point">비교</strong> 분석 결과를 제공해 드립니다. 여러 보험사의 <strong class="strong-point">장단점</strong>을 한 번에 파악하여 합리적인 <strong class="strong-point">가입</strong>을 도와드립니다.</p>
+
+    <form action="/submit" method="POST" style="max-width:700px; margin:auto;">
+      <label for="name">이름<span style="color:red;">*</span></label>
+      <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+
+      <label for="phone">연락처<span style="color:red;">*</span></label>
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+      <label for="birthdate">생년월일 (나이 확인)<span style="color:red;">*</span></label>
+      <input type="text" id="birthdate" name="birthdate" required placeholder="예: 19801001" pattern="[0-9]{8}" />
+
+      <label for="insurance-need">주요 관심 보장 항목<span style="color:red;">*</span></label>
+      <select id="insurance-need" name="insurance_need" required>
+        <option value="">선택하세요</option>
+        <option value="크라운 및 임플란트">크라운 및 임플란트 (고액 보철치료)</option>
+        <option value="충전치료 (레진, 인레이)">충전치료 (레진, 인레이 등 보존치료)</option>
+        <option value="전체 보장">전체 보장 (보존/보철 모두)</option>
+        <option value="단순 상담">단순 상담 및 <strong class="strong-point">가격</strong> <strong class="strong-point">비교</strong></option>
+      </select>
+
+      <label for="history">최근 1년 이내 치과 치료 경험 여부<span style="color:red;">*</span></label>
+      <select id="history" name="history" required>
+        <option value="">선택하세요</option>
+        <option value="없음">없음 (건강함)</option>
+        <option value="있음">있음 (치료받은 치아 <strong class="strong-point">가입</strong> 가능 여부 확인)</option>
+      </select>
+
+      <label for="renewal">희망하는 보험 유형<span style="color:red;">*</span></label>
+      <select id="renewal" name="renewal" required>
+        <option value="">선택하세요</option>
+        <option value="비갱신형">비갱신형 (장기적으로 안정적인 <strong class="strong-point">비용</strong>)</option>
+        <option value="갱신형">갱신형 (초기 <strong class="strong-point">저렴한곳</strong> 선호)</option>
+      </select>
+
+      <label for="message">추가 문의 사항 (ex. 보장 금액, <strong class="strong-point">예상</strong> <strong class="strong-point">금액</strong> <strong class="strong-point">견적</strong> 등)</label>
+      <textarea id="message" name="message" rows="4" placeholder="자세한 문의 사항을 남겨주세요."></textarea>
+
+      <button type="submit" class="btn-cta">무료 견적 상담 신청하기</button>
+    </form>
+  </section>
+
+  
